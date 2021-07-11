@@ -1,0 +1,174 @@
+//Food Ordering System(Mini-Project)
+//Code written and executed by K.Teja Sai Vamsi
+//In this program i have used structures to store order details and functions to execute each feature(Order,Serve,Display)
+//I'm so happy with unschool, as this is my first ever project completed in my life..!
+#include<stdio.h>
+#include<stdlib.h>
+int orderCount,Served,Waiting; //Global variables
+
+struct foodOrder
+{
+    char name[30];
+    int  orderNumber;
+    int  price;
+    int  numberofItems;
+}o[1000];
+
+//Function of Order
+int order()
+{
+    int itemCode,n,i,quantity,j;
+
+    printf("\n-----------------------------M-E-N-U-----------------------------");
+    printf("\nS.no   Name                Size            Price(In Indian Rupees)");
+    printf("\n-----------------------------------------------------------------");
+    printf("\n1      Capuccino           One Cup         120");
+    printf("\n2      Regular coffee      Half/Full       50/80");
+    printf("\n3      Cold Coffee         Medium/Large    120/210");
+    printf("\n4      Chicken sandwich    Medium/Large    60/90");
+    printf("\n5      Veg Sandwich        Medium/Large    45/75");
+    printf("\n6      Veg Samosa	         2pc's/4pc's     40/80");
+    printf("\n-----------------------------------------------------------------");
+    printf(" \n");
+
+    printf("\nPlease enter your name (without giving any spaces) : ");
+    scanf("%s",o[orderCount].name);
+    o[orderCount].numberofItems = n;
+
+    printf("\nEnter the total no.of orders you wanted to make : ");
+    scanf("%d",&n);
+
+    for(i=0;i<n;i++)
+    {
+        printf("\nEnter the item code of order %d : ",i+1);
+        scanf("%d",&itemCode);
+        if(itemCode==1)
+        {
+            printf("\nEnter the number of cups to be served(quantity) : ");
+            scanf("%d",&quantity);
+            o[orderCount].numberofItems = o[orderCount].numberofItems + quantity;
+            o[orderCount].price = o[orderCount].price + 120*quantity;
+        }
+        else if(itemCode==2)
+        {
+            printf("\nEnter the size of Regular coffee :\nfor Half ---> 1\nfor Full ---> 2\n");
+            scanf("%d",&j);
+            printf("Enter the quantity : ");
+            scanf("%d",&quantity);
+            o[orderCount].numberofItems = o[orderCount].numberofItems + quantity;
+            if(j==1)
+            o[orderCount].price =o[orderCount].price + 50*quantity;
+            else
+            o[orderCount].price = o[orderCount].price + 80*quantity;
+        }
+        else if(itemCode==3)
+        {
+            printf("\nEnter the size of Cold Coffee :\nfor Medium ---> 1\nfor Large ---> 2\n");
+            scanf("%d",&j);
+            printf("Enter the quantity : ");
+            scanf("%d",&quantity);
+            o[orderCount].numberofItems = o[orderCount].numberofItems + quantity;
+            if(j==1)
+            o[orderCount].price = o[orderCount].price + 120*quantity;
+            else
+            o[orderCount].price = o[orderCount].price + 210*quantity;
+        }
+        else if(itemCode==4)
+        {
+            printf("\nEnter the size of Chicken Sandwich :\nfor Medium ---> 1\nfor Large ---> 2\n");
+            scanf("%d",&j);
+            printf("Enter the quantity : ");
+            scanf("%d",&quantity);
+            o[orderCount].numberofItems = o[orderCount].numberofItems + quantity;
+            if(j==1)
+            o[orderCount].price = o[orderCount].price + 60*quantity;
+            else
+            o[orderCount].price = o[orderCount].price + 90*quantity;
+        }
+        else if(itemCode==5)
+        {
+            printf("\nEnter the size of Veg Sandwich :\nfor Medium ---> 1\nfor Large ---> 2\n");
+            scanf("%d",&j);
+            printf("Enter the quantity : ");
+            scanf("%d",&quantity);
+            o[orderCount].numberofItems = o[orderCount].numberofItems + quantity;
+            if(j==1)
+            o[orderCount].price = o[orderCount].price + 45*quantity;
+            else
+            o[orderCount].price = o[orderCount].price + 75*quantity;
+        }
+        else if(itemCode==6)
+        {
+            printf("\nEnter the size of Veg Samosa :\nfor 2pieces ---> 1\nfor 4pieces ---> 2\n");
+            scanf("%d",&j);
+            printf("Enter the quantity : ");
+            scanf("%d",&quantity);
+            o[orderCount].numberofItems = o[orderCount].numberofItems + quantity;
+            if(j==1)
+            o[orderCount].price = o[orderCount].price + 40*quantity;
+            else
+            o[orderCount].price = o[orderCount].price + 80*quantity;
+        }
+        else
+        {
+            printf("\nSorry for the inconvenience, the entered item code is invalid");
+        }
+    }
+
+    printf("\n-----------------------------Y-O-U-R--B-I-L-L-----------------------------");
+    printf("\nNumber of items ordered : %d",o[orderCount].numberofItems);
+    printf("\nYour total amount payable : %d\n",o[orderCount].price);
+
+    orderCount++;
+};
+
+//function of serve
+int serve()
+{
+    if (orderCount == 0){
+        printf ("\nNo orders placed yet to serve\n");
+    }
+    else if (Served == orderCount) {
+        printf ("\nAll orders have been served\n");
+    }
+    else{
+    printf("\nMr/Mrs %s, Your order is ready to serve!",o[Served].name);
+    printf("\nThank you..!\nHope you have great day!\n");
+    Served++;
+    }
+};
+
+//function of displaying no. of orders taken and served
+int display()
+{
+    printf("\nThe total number of orders taken are %d\n",orderCount);
+    printf("\nThe total number of orders served are %d\n",Served);
+};
+int main()
+{
+    int choice;
+    do
+    {
+    printf("\n              Welcome to Coffee Day");
+    printf("\nOrder   --> 1");
+    printf("\nServe   --> 2");
+    printf("\nDisplay --> 3");
+    printf("\nExit    --> 4");
+    printf("\nEnter your choice : ");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1 : order();
+        break;
+        case 2 : serve();
+        break;
+        case 3 : display();
+        break;
+        case 4 : printf("\nThank you:)\nVisit Again..!");
+        break;
+        default : printf("\nWe are unable to process your request, please try again with a different choice");
+    }
+    }while (1);
+    return 0;
+}
+//thank you:)
